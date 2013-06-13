@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 gemspec
 
+gem 'ridley', '~> 1.0.2'
+
 group :development do
   # We depend on Vagrant for development, but we don't add it as a
   # gem dependency because we expect to be installed within the

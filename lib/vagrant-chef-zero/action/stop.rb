@@ -5,6 +5,7 @@ module VagrantPlugins
       class Stop
 
         include VagrantPlugins::ChefZero::EnvHelpers
+        include VagrantPlugins::ChefZero::ServerHelpers
 
         def initialize(app, env)
           @app = app
@@ -14,12 +15,7 @@ module VagrantPlugins
 
         def call(env)
           stop_chef_zero(env)
-        end
-
-        def stop_chef_zero(env)
-          port = server_info(env)[:host].split(':').last
-          pid = %x[ lsof -i tcp:#{port} | grep ruby | awk '{print $2}' ]
-          system("kill #{pid}")
+          @app.call(env)
         end
 
       end

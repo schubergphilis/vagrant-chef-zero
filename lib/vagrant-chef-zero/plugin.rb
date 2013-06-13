@@ -1,3 +1,5 @@
+require 'ridley'
+
 # This is a sanity check to make sure no one is attempting to install
 # this into an early Vagrant version.
 if Vagrant::VERSION < "1.2.0"
@@ -24,9 +26,9 @@ module VagrantPlugins
         end
       end
 
-      action_hook(:chef_zero_provision, :machine_action_up, &method(:provision))
+      action_hook(:chef_zero_up, :machine_action_up, &method(:provision))
       # action_hook(:chef_zero_provision, :machine_action_reload, &method(:provision))
-      # action_hook(:chef_zero_provision, :machine_action_provision, &method(:provision))
+      action_hook(:chef_zero_provision, :machine_action_provision, &method(:provision))
 
       action_hook(:chef_zero_clean, :machine_action_destroy, &method(:clean))
 

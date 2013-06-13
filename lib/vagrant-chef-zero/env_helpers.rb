@@ -42,6 +42,25 @@ module VagrantPlugins
         fake_key_path
       end
 
+      def get_host(env)
+        url = server_info(env)[:host]
+        if url
+          # Some terrible string manipulation to get the ip
+          return url.split('//').last.split(':').first
+        end
+      end
+
+      def get_port(env)
+        url = server_info(env)[:host]
+        # Same with the port
+        p = url.split(':').last
+        if p && p != ""
+          port = p
+        else
+          port = "4000"
+        end
+        port
+      end
 
     end
   end

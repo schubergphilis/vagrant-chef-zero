@@ -34,10 +34,10 @@ module VagrantPlugins
       attr_accessor :enabled
 
       attr_accessor :host
-      attr_accessor :port
-      attr_accessor :key
 
-      def initialize()
+      def initialize
+        super
+
         @roles        = UNSET_VALUE
         @environments = UNSET_VALUE
         @nodes        = UNSET_VALUE
@@ -47,6 +47,10 @@ module VagrantPlugins
       end
 
       def validate(machine)
+        { "Chef Zero" => [] }
+      end
+
+      def finalize!
         @enabled = true if @enabled = UNSET_VALUE
         @host = provisioner.config.chef_server_url
         @roles = nil if @roles = UNSET_VALUE
@@ -54,6 +58,7 @@ module VagrantPlugins
         @nodes = nil if @nodes = UNSET_VALUE
         @cookbooks = nil if @cookbooks = UNSET_VALUE
         @data_bags = nil if @data_bags = UNSET_VALUE
+        {}
       end
 
     end

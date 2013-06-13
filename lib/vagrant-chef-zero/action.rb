@@ -1,5 +1,6 @@
 require 'vagrant/action/builder'
 require 'vagrant-chef-zero/env_helpers'
+require 'vagrant-chef-zero/server_helpers'
 
 module VagrantPlugins
   module ChefZero
@@ -14,7 +15,7 @@ module VagrantPlugins
       def self.chef_zero_provision
         Vagrant::Action::Builder.new.tap do |b|
           b.use VagrantPlugins::ChefZero::Action::Start
-          #b.use VagrantPlugins::ChefZero::Action::Upload
+          b.use VagrantPlugins::ChefZero::Action::Upload
         end
       end
 

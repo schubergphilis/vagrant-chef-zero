@@ -5,13 +5,14 @@ ip_address = Socket.ip_address_list.detect{|intf| intf.ipv4_private?}.ip_address
 Vagrant.require_plugin "vagrant-chef-zero"
 
 Vagrant.configure("2") do |config|
-  config.vm.box = ENV['YIPIT_VAGRANT_BOX']
+
   config.chef_zero.nodes = "foobar"
   config.chef_zero.environments = "foobar"
   config.chef_zero.data_bags = "foobar"
-  config.chef_zero.cookbooks = "foobar"
+  config.chef_zero.cookbooks = "#{ENV['CHEF_PATH']}/cookbooks"
   config.chef_zero.roles = "foobar"
 
+  config.vm.box = ENV['YIPIT_VAGRANT_BOX']
   config.vm.provision :chef_client do |chef|
     chef.json = { "username" => "vagrant" }
 
