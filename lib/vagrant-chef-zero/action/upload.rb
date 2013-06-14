@@ -28,10 +28,13 @@ module VagrantPlugins
         def upload_cookbooks(env)
           path = env[:machine].config.chef_zero.cookbooks
           env[:ui].info("Loading cookbooks from #{path}")
-          existing_cookbooks = @conn.node.all
 
           if path
-            cookbooks = Dir.glob("#{path}/*")
+            if path.is_a(Array)
+              cookbooks = path
+            else
+              cookbooks = Dir.glob("#{path}/*")
+            end
             cookbooks.each do |cookbook|
               name = File.basename(cookbook)
               @conn.cookbook.upload(cookbook, options: {name: name})
