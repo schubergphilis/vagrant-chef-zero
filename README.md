@@ -1,3 +1,5 @@
+Note: At this time the gem version is doing some weird stuff when installed by Vagrant.  If you want to play with this you will need to download the Git repo and use the bundler version of Vagrant for development.
+
 # Vagrant-Chef-Zero
 
 This is a plugin designed to help integrate Chef-Zero into a Vagrant run, similar to Berkshelf.  Chef-Zero will be started on the host machine and populated with the specified data.  When the Vagrant machine is destroyed Chef-Zero will be killed.

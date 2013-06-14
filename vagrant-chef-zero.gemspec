@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.platform      = Gem::Platform::RUBY
   s.authors       = "Andrew Gross"
   s.email         = "andrew.w.gross@gmail.com"
-  s.homepage      = "http://loadedinthecloud.blogspot.com"
+  s.homepage      = "http://github.com/andrewgross/vagrant-chef-zero"
   s.summary       = "Enables Vagrant to interact with Chef Zero."
   s.description   = "Enables Vagrant to interact with Chef Zero"
 
