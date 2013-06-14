@@ -31,14 +31,10 @@ module VagrantPlugins
           existing_cookbooks = @conn.node.all
 
           if path
-            cookbooks = Dir.glob(path)
-            cookbooks.each do |c|
-            cookbook = JSON.parse(IO.read(c)).to_hash
-              if ! existing_cookbooks.any?{ |e| e['name'] == cookbook['name'] }
-                @conn.cookbook.create(cookbook)
-              else
-                @conn.cookbook.update(cookbook)
-              end
+            cookbooks = Dir.glob("#{path}/*")
+            cookbooks.each do |cookbook|
+              name = File.basename(cookbook)
+              @conn.cookbook.upload(cookbook, options: {name: name})
             end
           end
         end
