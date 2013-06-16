@@ -1,6 +1,7 @@
 require 'rake'
 require 'rake/testtask'
 require 'bundler/setup'
+require 'bundler/gem_tasks'
 
 # Immediately sync all stdout so that tools like buildbot can
 # immediately load in the output.
