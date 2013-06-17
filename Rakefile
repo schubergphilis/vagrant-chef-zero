@@ -2,6 +2,7 @@ require 'rake'
 require 'rake/testtask'
 require 'bundler/setup'
 require 'bundler/gem_tasks'
+require 'fileutils'
 
 # Immediately sync all stdout so that tools like buildbot can
 # immediately load in the output.
@@ -20,4 +21,11 @@ task :default => "test"
 
 Rake::TestTask.new do |t|
   t.pattern = 'spec/**/*_spec.rb'
+end
+
+task :clean do |t|
+  FileUtils.rm_rf 'pkg'
+  system('bundle exec vagrant destroy -f')
+  FileUtils.rm_rf '.vagrant'
+  FileUtils.rm_rf 'Gemfile.lock'
 end
