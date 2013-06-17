@@ -1,5 +1,3 @@
-Note: At this time the gem version is doing some weird stuff when installed by Vagrant.  If you want to play with this you will need to download the Git repo and use the bundler version of Vagrant for development.
-
 # Vagrant-Chef-Zero
 
 This is a plugin designed to help integrate Chef-Zero into a Vagrant run, similar to Berkshelf.  Chef-Zero will be started on the host machine and populated with the specified data.  When the Vagrant machine is destroyed Chef-Zero will be killed.
@@ -10,9 +8,9 @@ Inside of your Vagrant file you will have access to the following configuration 
 
 ```ruby
 config.chef_zero.nodes = "../foobar/nodes"
-config.chef_zero.environments = "../foobar/environments"
+config.chef_zero.environments = "../foobar/environments/baz.json"
 config.chef_zero.data_bags = "../foobar/data_bags"
-config.chef_zero.roles = "../foobar/roles"
+config.chef_zero.roles = "../foobar/roles/*.json"
 ```
 
 As Vagrant is booting up, `vagrant-chef-zero` will search each specified location for files to upload to Chef-Zero.  The upload will be done via Ridley APIs.

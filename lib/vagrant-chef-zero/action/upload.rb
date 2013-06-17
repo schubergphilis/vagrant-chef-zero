@@ -30,7 +30,7 @@ module VagrantPlugins
           env[:ui].info("Loading cookbooks from #{path}")
 
           if path
-            if path.is_a(Array)
+            if path.is_a?(Array)
               cookbooks = path
             else
               cookbooks = Dir.glob("#{path}/*")
