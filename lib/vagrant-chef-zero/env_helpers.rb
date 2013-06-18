@@ -20,6 +20,24 @@ module VagrantPlugins
         env[:machine].config.vm.provisioners.select { |prov| prov.name == name }
       end
 
+      def get_validation_client_name(env)
+        current_client_name = server_info(env)[:client_name]
+        if ! current_client_name || current_client_name.empty?
+          current_client_name = "dummy-validator"
+        end
+        current_client_name
+      end
+
+      def get_chef_server_url(env)
+        current_chef_server_url = server_info(env)[:host]
+        if ! current_chef_server_url || current_chef_server_url.empty?
+          require 'socket'
+          ip_address = Socket.ip_address_list.detect{|intf| intf.ipv4_private?}.ip_address
+          current_chef_server_url = "http://#{ip_address}:4000"
+        end
+        current_chef_server_url
+      end
+
       def get_key_path(env)
         current_key_path = server_info(env)[:client_key]
         if ! current_key_path || ! ::File.exists?(current_key_path)

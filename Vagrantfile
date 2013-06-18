@@ -14,11 +14,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = ENV['YIPIT_VAGRANT_BOX']
   config.vm.provision :chef_client do |chef|
-    chef.json = { "username" => "vagrant" }
-
-    chef.chef_server_url = "http://#{ip_address}:4000"
-    chef.validation_client_name = "chef-validator"
-
     chef.run_list = [
     ]
   end
