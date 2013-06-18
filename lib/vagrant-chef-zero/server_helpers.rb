@@ -7,9 +7,11 @@ module VagrantPlugins
         host = get_host(env)
         if ! chef_zero_server_running?(port)
           proc = IO.popen("chef-zero --host #{host} --port #{port} 2>&1 > /dev/null")
+          env[:chef_zero].ui.info("Starting Chef Zero at http://#{host}:#{port}")
         end
         while ! chef_zero_server_running?(port)
           sleep 1
+          env[:chef_zero].ui.warn("Waiting for Chef Zero to start")
         end
       end
 
@@ -17,6 +19,7 @@ module VagrantPlugins
         port = get_port(env)
         if chef_zero_server_running?(port)
           pid = get_chef_zero_server_pid(port)
+          env[:chef_zero].ui.info("Stopping Chef Zero")
           system("kill #{pid}")
         end
       end

@@ -12,8 +12,8 @@ module VagrantPlugins
 
       class << self
         def reconfig(hook)
-          hook.before(::Vagrant::Action::Builtin::ConfigValidate, VagrantPlugins::ChefZero::Action.chef_zero_reconfig)
           hook.before(::Vagrant::Action::Builtin::ConfigValidate, VagrantPlugins::ChefZero::Action.chef_zero_ui_setup)
+          hook.before(::Vagrant::Action::Builtin::ConfigValidate, VagrantPlugins::ChefZero::Action.chef_zero_reconfig)
         end
 
         def provision(hook)

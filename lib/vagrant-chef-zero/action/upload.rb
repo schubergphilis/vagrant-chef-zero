@@ -122,7 +122,7 @@ module VagrantPlugins
         def select_items(path)
           if path.nil?
             path = []
-          elsif path.respond_to?('empty?') && path.empty
+          elsif path.respond_to?('empty?') && path.empty?
             path = []
           elsif path.is_a?(Array)
             path
