@@ -6,9 +6,9 @@ end
 
 module VagrantPlugins
   module ChefZero
+    autoload :Env, 'vagrant-chef-zero/env'
     autoload :Action, 'vagrant-chef-zero/action'
     autoload :Config, 'vagrant-chef-zero/config'
-    autoload :Env, 'vagrant-chef-zero/env'
   end
 end
 

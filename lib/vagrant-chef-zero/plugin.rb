@@ -18,6 +18,7 @@ module VagrantPlugins
 
       class << self
         def provision(hook)
+          hook.before(::Vagrant::Action::Builtin::ConfigValidate, VagrantPlugins::ChefZero::Action.setup)
           hook.after(::Vagrant::Action::Builtin::Provision, VagrantPlugins::ChefZero::Action.chef_zero_provision)
         end
 

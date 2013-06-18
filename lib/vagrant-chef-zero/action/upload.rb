@@ -29,10 +29,10 @@ module VagrantPlugins
         def upload_cookbooks(env)
           path = env[:machine].config.chef_zero.cookbooks
           cookbooks = select_items(path)
-          env[:ui].info("Loading cookbooks from #{path}") unless cookbooks.empty?
+          env[:chef_zero].ui.info("Loading cookbooks from #{path}") unless cookbooks.empty?
           cookbooks.each do |cookbook|
             name = File.basename(cookbook)
-            env[:ui].info("Uploading Cookbook #{name}")
+            env[:chef_zero].ui.info("Uploading Cookbook #{name}")
             @conn.cookbook.upload(cookbook, options: {name: name})
           end
         end
@@ -45,10 +45,10 @@ module VagrantPlugins
           nodes.each do |n|
             node = JSON.parse(IO.read(n)).to_hash
             if ! existing_nodes.any?{ |e| e['name'] == node['name'] }
-              env[:ui].info("Creating Node #{node['name']}")
+              env[:chef_zero].ui.info("Creating Node #{node['name']}")
               @conn.node.create(node)
             else
-              env[:ui].info("Updating Node #{node['name']}")
+              env[:chef_zero].ui.info("Updating Node #{node['name']}")
               @conn.node.update(node)
             end
           end
@@ -62,10 +62,10 @@ module VagrantPlugins
           environments.each do |e|
             environment = JSON.parse(IO.read(e)).to_hash
             if ! existing_envs.any?{ |ee| ee['name'] == environment['name'] }
-              env[:ui].info("Creating Environment #{environment['name']}")
+              env[:chef_zero].ui.info("Creating Environment #{environment['name']}")
               @conn.environment.create(environment)
             else
-              env[:ui].info("Updating Environment #{environment['name']}")
+              env[:chef_zero].ui.info("Updating Environment #{environment['name']}")
               @conn.environment.update(environment)
             end
           end
@@ -79,10 +79,10 @@ module VagrantPlugins
           roles.each do |r|
           role = JSON.parse(IO.read(r)).to_hash
             if ! existing_roles.any?{ |er| er['name'] == role['name'] }
-              env[:ui].info("Creating role #{role['name']}")
+              env[:chef_zero].ui.info("Creating role #{role['name']}")
               @conn.role.create(role)
             else
-              env[:ui].info("Updating role #{role['name']}")
+              env[:chef_zero].ui.info("Updating role #{role['name']}")
               @conn.role.update(role)
             end
           end
@@ -97,17 +97,17 @@ module VagrantPlugins
               bag_name = File.basename(data_bag_dir)
               data_bag = @conn.data_bag.find(bag_name)
               if ! data_bag
-                env[:ui].info("Creating Data Bag #{bag_name}")
+                env[:chef_zero].ui.info("Creating Data Bag #{bag_name}")
                 data_bag = @conn.data_bag.create(name: bag_name)
               end
 
               Dir.glob("#{data_bag_dir}/*.json").each do |i|
                 item_as_hash = JSON.parse(IO.read(i)).to_hash
                 if data_bag.item.find(item_as_hash['id'])
-                  env[:ui].info("Updating item #{item_as_hash['id']} in Data Bag #{bag_name}")
+                  env[:chef_zero].ui.info("Updating item #{item_as_hash['id']} in Data Bag #{bag_name}")
                   data_bag.item.update(item_as_hash)
                 else
-                  env[:ui].info("Creating item #{item_as_hash['id']} in Data Bag #{bag_name}")
+                  env[:chef_zero].ui.info("Creating item #{item_as_hash['id']} in Data Bag #{bag_name}")
                   data_bag.item.create(item_as_hash)
                 end
               end
@@ -125,7 +125,7 @@ module VagrantPlugins
           elsif File.exists?(path)
             path = [path]
           else
-            @env[:ui].info("Unable to normalize #{path}, skipping")
+            @env[:chef_zero].ui.warn("Warning: Unable to normalize #{path}, skipping")
             path = []
           end
           path

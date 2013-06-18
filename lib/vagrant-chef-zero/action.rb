@@ -25,6 +25,12 @@ module VagrantPlugins
         end
       end
 
+      def self.setup
+        ::Vagrant::Action::Builder.new.tap do |b|
+          b.use ::Vagrant::Action::Builtin::EnvSet, chef_zero: VagrantPlugins::ChefZero::Env.new
+        end
+      end
+
     end
   end
 end

@@ -8,7 +8,7 @@ module VagrantPlugins
       attr_accessor :ui
 
       def initialize
-        @ui = ::Vagrant::UI::Colored.new.scope('ChefZero')
+        @ui = ::Vagrant::UI::Colored.new.scope('Chef Zero')
       end
     end
   end
