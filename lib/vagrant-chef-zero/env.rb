@@ -7,24 +7,8 @@ module VagrantPlugins
       # @return [Vagrant::UI::Colored]
       attr_accessor :ui
 
-      # @return [String]
-      attr_accessor :port
-
-      # @return [String]
-      attr_accessor :pid
-
-      # @return [String]
-      attr_accessor :host
-
       def initialize
-        if Gem::Version.new(::Vagrant::VERSION) >= Gem::Version.new("1.2")
-          @ui     = ::Vagrant::UI::Colored.new.scope('ChefZero')
-        else
-          @ui     = ::Vagrant::UI::Colored.new('ChefZero')
-        end
-        @port = VagrantPlugins::ChefZero::Config.port
-        @pid = nil
-        @host = VagrantPlugins::ChefZero::Config.host
+        @ui = ::Vagrant::UI::Colored.new.scope('ChefZero')
       end
     end
   end
