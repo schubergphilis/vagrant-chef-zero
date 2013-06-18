@@ -94,7 +94,7 @@ module VagrantPlugins
 
         def upload_data_bags(env)
           path = env[:machine].config.chef_zero.data_bags
-          if path && File.directory?(path)
+          if path && path.is_a?(String) && File.directory?(path)
             data_bags = Dir.glob("#{path}/*").select{|d| File.directory? d}
 
             data_bags.each do |data_bag_dir|
@@ -120,13 +120,15 @@ module VagrantPlugins
         end
 
         def select_items(path)
-          if path.nil? || path.empty?
+          if path.nil?
+            path = []
+          elsif path.respond_to?('empty?') && path.empty
             path = []
           elsif path.is_a?(Array)
             path
-          elsif File.directory?(path)
+          elsif path.is_a?(String) && File.directory?(path)
             path = Dir.glob("#{path}/*.json")
-          elsif File.exists?(path)
+          elsif path.is_a?(String) && File.exists?(path)
             path = [path]
           else
             @env[:chef_zero].ui.warn("Warning: Unable to normalize #{path}, skipping")
