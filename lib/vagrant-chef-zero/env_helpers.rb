@@ -3,11 +3,14 @@ module VagrantPlugins
     module EnvHelpers
 
       def server_info(env)
+        dict = { host: nil, client_name: nil, client_key: nil }
         provisioners(:chef_client, env).each do |provisioner|
-          return { host: provisioner.config.chef_server_url,
-                   client_name: provisioner.config.validation_client_name,
-                   client_key: provisioner.config.validation_key_path }
+          host = provisioner.config.chef_server_url ||= nil
+          client_name = provisioner.config.validation_client_name ||= nil
+          client_key = provisioner.config.validation_key_path ||= nil
+          dict = { host: host, client_name: client_name, client_key: client_key }
         end
+        dict
       end
 
       def set_config(config_field, new_value, env)
@@ -68,13 +71,23 @@ module VagrantPlugins
       def get_port(env)
         url = server_info(env)[:host]
         # Same with the port
-        p = url.split(':').last
-        if p && p != ""
-          port = p
+        if url
+          p = url.split(':').last
+          if p && p != ""
+            port = p
+          end
         else
           port = "4000"
         end
         port
+      end
+
+      def chef_client?(env)
+        provisioners(:chef_client, env).any?
+      end
+
+      def chef_zero_enabled?(env)
+        env[:global_config].chef_zero.enabled && chef_client?(env)
       end
 
     end

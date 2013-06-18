@@ -13,6 +13,9 @@ module VagrantPlugins
         end
 
         def call(env)
+          unless chef_zero_enabled?(env)
+            return @app.call(env)
+          end
           stop_chef_zero(env)
           @app.call(env)
         end

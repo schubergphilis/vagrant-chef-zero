@@ -17,6 +17,10 @@ module VagrantPlugins
         end
 
         def call(env)
+          unless chef_zero_enabled?(env)
+            return @app.call(env)
+          end
+
           setup_connection
           upload_cookbooks(env)
           upload_environments(env)

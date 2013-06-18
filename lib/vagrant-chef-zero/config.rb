@@ -33,8 +33,6 @@ module VagrantPlugins
       # @return [TrueClass, FalseClass]
       attr_accessor :enabled
 
-      attr_accessor :host
-
       def initialize
         @roles        = UNSET_VALUE
         @environments = UNSET_VALUE
@@ -50,7 +48,6 @@ module VagrantPlugins
 
       def finalize!
         @enabled = true if @enabled == UNSET_VALUE
-        @host = provisioner.config.chef_server_url
         @roles = nil if @roles == UNSET_VALUE
         @environments = nil if @environments == UNSET_VALUE
         @nodes = nil if @nodes == UNSET_VALUE
