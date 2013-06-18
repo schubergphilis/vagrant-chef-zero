@@ -14,9 +14,6 @@ module VagrantPlugins
         provisioners(:chef_client, env).each do |provisioner|
           provisioner.config.instance_variable_set(config_field, new_value)
         end
-        ObjectSpace.each_object(VagrantPlugins::Chef::Config::ChefClient).each do |o|
-          o.instance_variable_set(config_field, new_value)
-        end
       end
 
       def provisioners(name, env)

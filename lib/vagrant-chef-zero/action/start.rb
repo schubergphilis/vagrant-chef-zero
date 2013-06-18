@@ -10,8 +10,6 @@ module VagrantPlugins
         def initialize(app, env)
           @app = app
           @key = get_key_path(env)
-          set_config("@validation_key_path", @key, env)
-          @pid = nil
         end
 
         def call(env)

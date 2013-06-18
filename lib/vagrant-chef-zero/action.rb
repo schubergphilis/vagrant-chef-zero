@@ -8,9 +8,10 @@ module VagrantPlugins
 
       include Vagrant::Action::Builtin
 
-      autoload :Start, 'vagrant-chef-zero/action/start'
-      autoload :Upload, 'vagrant-chef-zero/action/upload'
-      autoload :Stop, 'vagrant-chef-zero/action/stop'
+      autoload :Reconfig, 'vagrant-chef-zero/action/reconfig'
+      autoload :Start,    'vagrant-chef-zero/action/start'
+      autoload :Upload,   'vagrant-chef-zero/action/upload'
+      autoload :Stop,     'vagrant-chef-zero/action/stop'
 
       def self.chef_zero_provision
         Vagrant::Action::Builder.new.tap do |b|
@@ -19,33 +20,24 @@ module VagrantPlugins
         end
       end
 
-      def self.chef_zero_clean
+      def self.chef_zero_destroy
         Vagrant::Action::Builder.new.tap do |b|
           b.use VagrantPlugins::ChefZero::Action::Stop
         end
       end
 
-      def self.setup
-        ::Vagrant::Action::Builder.new.tap do |b|
+      def self.chef_zero_reconfig
+        Vagrant::Action::Builder.new.tap do |b|
+          b.use VagrantPlugins::ChefZero::Action::Reconfig
+        end
+      end
+
+      def self.chef_zero_ui_setup
+        Vagrant::Action::Builder.new.tap do |b|
           b.use ::Vagrant::Action::Builtin::EnvSet, chef_zero: VagrantPlugins::ChefZero::Env.new
         end
       end
 
-    end
-  end
-end
-
-module VagrantPlugins
-  module Chef
-    module Config
-      class ChefClient
-
-        old_validate = ObjectSpace.each_object(VagrantPlugins::Chef::Config::ChefClient).first.method(:validate)
-        def validate(machine)
-          old_validate(machine)
-        end
-
-      end
     end
   end
 end

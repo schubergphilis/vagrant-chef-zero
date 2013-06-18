@@ -9,31 +9,37 @@ end
 module VagrantPlugins
   module ChefZero
     class Plugin < Vagrant.plugin("2")
+
+      class << self
+        def reconfig(hook)
+          hook.before(::Vagrant::Action::Builtin::ConfigValidate, VagrantPlugins::ChefZero::Action.chef_zero_reconfig)
+          hook.before(::Vagrant::Action::Builtin::ConfigValidate, VagrantPlugins::ChefZero::Action.chef_zero_ui_setup)
+        end
+
+        def provision(hook)
+          hook.after(::Vagrant::Action::Builtin::Provision, VagrantPlugins::ChefZero::Action.chef_zero_provision)
+        end
+
+        def destroy(hook)
+          hook.after(VagrantPlugins::ProviderVirtualBox::Action::DestroyUnusedNetworkInterfaces, VagrantPlugins::ChefZero::Action.chef_zero_destroy)
+        end
+
+      end
+
       name "chef_zero"
       description <<-DESC
       This plugin adds configuration options to allow Vagrant to interact with
       Chef Zero
       DESC
 
-
-      class << self
-        def provision(hook)
-          hook.before(::Vagrant::Action::Builtin::ConfigValidate, VagrantPlugins::ChefZero::Action.setup)
-          hook.after(::Vagrant::Action::Builtin::Provision, VagrantPlugins::ChefZero::Action.chef_zero_provision)
-        end
-
-        def clean(hook)
-          hook.after(VagrantPlugins::ProviderVirtualBox::Action::DestroyUnusedNetworkInterfaces, VagrantPlugins::ChefZero::Action.chef_zero_clean)
-        end
-      end
+      # Deep magic of not binding to any specific action.. so we can bind to them all
+      action_hook(:chef_zero_reconfig, &method(:reconfig))
 
       action_hook(:chef_zero_up, :machine_action_up, &method(:provision))
-      # action_hook(:chef_zero_provision, :machine_action_reload, &method(:provision))
+
       action_hook(:chef_zero_provision, :machine_action_provision, &method(:provision))
 
-      action_hook(:chef_zero_provision, :machine_action_reload, &method(:provision))
-
-      action_hook(:chef_zero_clean, :machine_action_destroy, &method(:clean))
+      action_hook(:chef_zero_destroy, :machine_action_destroy, &method(:destroy))
 
       config(:chef_zero) do
         require_relative "config"
