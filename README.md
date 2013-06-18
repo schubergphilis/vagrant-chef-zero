@@ -34,6 +34,8 @@ config.chef_zero.cookbooks = "spec/fixtures/cookbooks"
 
 As Vagrant is booting up, `vagrant-chef-zero` will search each specified location for files to upload to Chef-Zero.  The upload will be done via Ridley APIs.
 
+Check out the included [Vagrantfile](https://github.com/andrewgross/vagrant-chef-zero/blob/master/Vagrantfile) for example usage.
+
 ### Cookbooks
 
 These are uploaded via the `Ridley` gem.  It is the same backend that `Berkshelf` uses, though I am sure my usage is not as complete.  It expects a path to a `cookbooks/` directory, or an array of paths to individual cookbooks.  If you omit this field, you can have `Berkshelf` upload cookbooks as usual (It will find the Chef-Zero URL automatically).
