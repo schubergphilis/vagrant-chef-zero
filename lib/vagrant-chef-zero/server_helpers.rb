@@ -6,8 +6,9 @@ module VagrantPlugins
         port = get_port(env)
         host = get_host(env)
         if ! chef_zero_server_running?(port)
-          proc = IO.popen("#{ENV['HOME']}/.vagrant.d/gems/bin/chef-zero "+
-                          "--host #{host} --port #{port} 2>&1 > /dev/null")
+          vagrant_gems = ENV['GEM_PATH'].split(':').select { |gp| gp.include?('vagrant')}
+          chef_zero_binary = ::File.join(vagrant_gems, "bin", "chef-zero")
+          proc = IO.popen("#{chef_zero_binary} --host #{host} --port #{port} 2>&1 > /dev/null")
           env[:chef_zero].ui.info("Starting Chef Zero at http://#{host}:#{port}")
         end
         while ! chef_zero_server_running?(port)
