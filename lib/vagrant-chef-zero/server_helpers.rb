@@ -6,7 +6,8 @@ module VagrantPlugins
         port = get_port(env)
         host = get_host(env)
         if ! chef_zero_server_running?(port)
-          proc = IO.popen("chef-zero --host #{host} --port #{port} 2>&1 > /dev/null")
+          proc = IO.popen("#{ENV['HOME']}/.vagrant.d/gems/bin/chef-zero "+
+                          "--host #{host} --port #{port} 2>&1 > /dev/null")
           env[:chef_zero].ui.info("Starting Chef Zero at http://#{host}:#{port}")
         end
         while ! chef_zero_server_running?(port)
