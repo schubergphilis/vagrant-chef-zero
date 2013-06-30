@@ -17,6 +17,8 @@ module VagrantPlugins
             return @app.call(env)
           end
           stop_chef_zero(env)
+          rm_knife_config(env)
+
           @app.call(env)
         end
 

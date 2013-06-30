@@ -19,6 +19,8 @@ module VagrantPlugins
 
             @validation_client_name = get_validation_client_name(env)
             set_config("@validation_client_name", @validation_client_name, env)
+
+            write_knife_config(env)
           end
         end
 
