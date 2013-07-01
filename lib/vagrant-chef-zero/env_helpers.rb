@@ -13,8 +13,8 @@ module VagrantPlugins
       end
 
       def rm_knife_config(env)
-        File.rm "#{env[:root_path]}/.zero-knife.rb"
-        File.rm get_key_path(env)
+        File.unlink "#{env[:root_path]}/.zero-knife.rb" if File.exists? "#{env[:root_path]}/.zero-knife.rb"
+        File.unlink get_key_path(env) if File.exists? get_key_path(env)
       end
 
       def server_info(env)
