@@ -1,3 +1,5 @@
+Vagrant.require_plugin "vagrant-chef-zero"
+
 Vagrant.configure("2") do |config|
 
   config.chef_zero.nodes =        "spec/vagrant-chef-zero/fixtures/nodes"
@@ -6,7 +8,7 @@ Vagrant.configure("2") do |config|
   config.chef_zero.cookbooks =    "spec/vagrant-chef-zero/fixtures/cookbooks"
   config.chef_zero.roles = "foobar"
 
-  config.vm.box = 'precise64.box'
+  config.vm.box = ENV['YIPIT_VAGRANT_BOX']
   config.vm.provision :chef_client do |chef|
     chef.run_list = [
     ]
