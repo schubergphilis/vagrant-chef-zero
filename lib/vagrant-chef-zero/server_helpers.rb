@@ -32,7 +32,7 @@ module VagrantPlugins
       end
 
       def get_chef_zero_server_pid(port)
-        pid = %x[ lsof -i tcp:#{port} | grep ruby | awk '{print $2}' ]
+        pid = %x[ lsof -i tcp:#{port} | grep -E 'ruby|chef-zero' | awk '{print $2}' ]
         if pid && pid != ""
           return pid
         end
