@@ -17,11 +17,6 @@ Gem::Specification.new do |s|
   s.add_dependency "chef-zero", "~> 1.3"
   s.add_dependency "ridley", ">= 1.0.0"
 
-
-  # Stolen from Vagrant Berkshelf because Ruby hates dependency resolution
-  # activesupport 3.2.13 contains an incompatible hard lock on i18n (= 0.6.1)
-  s.add_dependency 'activesupport', '>= 3.2.0', '< 3.2.13'
-
   # Explicit locks to ensure we activate the proper gem versions for Vagrant
   s.add_dependency 'i18n', '~> 0.6.0'
   s.add_dependency 'net-ssh', '~> 2.6.6'
