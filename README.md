@@ -1,4 +1,5 @@
 # Vagrant-Chef-Zero
+[![Code Climate](https://codeclimate.com/repos/51e419cc89af7e3a2a003663/badges/c7a21cef56cddb54ab12/gpa.png)](https://codeclimate.com/repos/51e419cc89af7e3a2a003663/feed)
 
 This is a plugin designed to help integrate Chef-Zero into a Vagrant run, similar to Berkshelf.  Chef-Zero will be started on the host machine and populated with the specified data.  When the Vagrant machine is destroyed Chef-Zero will be killed.
 
