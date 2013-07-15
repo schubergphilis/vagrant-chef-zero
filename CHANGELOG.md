@@ -1,3 +1,9 @@
+## 0.2.6
+
+* Remove unused ActiveSupport dependency.
+* Add MIT License
+
+
 ## 0.2.5
 
 * Fix bug where the PID of the Chef-Zero server could not be found due to inconsistencies in the process name across operating systems.  Fixes [#11](https://github.com/andrewgross/vagrant-chef-zero/issues/11)
