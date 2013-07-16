@@ -1,4 +1,4 @@
-Gemfile.lock
+*.lock
 .vagrant
 pkg
 coverage
