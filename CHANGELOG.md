@@ -1,3 +1,13 @@
+## 0.2.8
+
+* Fix Berkshelf support by monkeypatching `client_key` in all Berkshelf Objects
+
+
+## 0.2.7
+
+* Re-add ActiveSupport dependency because otherwise the plugin cannot install correctly in Vagrant.
+
+
 ## 0.2.6
 
 * Remove unused ActiveSupport dependency.
