@@ -17,7 +17,7 @@ module VagrantPlugins
         end
 
         def provision(hook)
-          hook.after(::Vagrant::Action::Builtin::Provision, VagrantPlugins::ChefZero::Action.chef_zero_provision)
+          hook.before(::Vagrant::Action::Builtin::Provision, VagrantPlugins::ChefZero::Action.chef_zero_provision)
         end
 
         def destroy(hook)
