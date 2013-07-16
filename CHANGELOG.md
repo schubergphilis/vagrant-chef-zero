@@ -1,3 +1,8 @@
+## 0.2.9
+
+* Fix Berkshelf support by being selfish and putting Chef Zero before Berkshelf (and anything else) in the load order for `up`, `provision` and `reload`
+
+
 ## 0.2.8
 
 * Fix Berkshelf support by monkeypatching `client_key` in all Berkshelf Objects
