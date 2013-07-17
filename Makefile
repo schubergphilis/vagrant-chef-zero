@@ -4,12 +4,7 @@ install:
 	@bundle install
 
 clean:
-	@bundle exec vagrant destroy -f
-	@rm -rf coverage
-	@rm -rf .vagrant
-	@rm Gemfile.lock
-	@rm -rf pkg
-
+	@bundle exec rake clean
 test:
 	@bundle exec rake test
 

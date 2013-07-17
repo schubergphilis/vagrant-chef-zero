@@ -26,5 +26,6 @@ task :clean do |t|
   FileUtils.rm_rf 'pkg'
   system('bundle exec vagrant destroy -f')
   FileUtils.rm_rf '.vagrant'
+  FileUtils.rm_rf 'coverage'
   FileUtils.rm_rf 'Gemfile.lock'
 end
