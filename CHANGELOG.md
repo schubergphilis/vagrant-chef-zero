@@ -1,3 +1,7 @@
+## 0.2.10
+
+* Fix bug where we could find multiple gem paths with 'vagrant' in them, causing the construction of an erroneous Chef Zero binary path.  Fixes [#10](https://github.com/andrewgross/vagrant-chef-zero/issues/10)
+
 ## 0.2.9
 
 * Fix Berkshelf support by being selfish and putting Chef Zero before Berkshelf (and anything else) in the load order for `up`, `provision` and `reload`
