@@ -37,6 +37,8 @@ module VagrantPlugins
 
       action_hook(:chef_zero_up, :machine_action_up, &method(:provision))
 
+      action_hook(:chef_zero_reload, :machine_action_reload, &method(:provision))
+
       action_hook(:chef_zero_provision, :machine_action_provision, &method(:provision))
 
       action_hook(:chef_zero_provision, :machine_action_reload, &method(:provision))
