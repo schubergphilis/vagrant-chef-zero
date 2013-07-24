@@ -17,7 +17,7 @@ module VagrantPlugins
         end
 
         def provision(hook)
-          hook.after(::Vagrant::Action::Builtin::Provision, VagrantPlugins::ChefZero::Action.chef_zero_provision)
+          hook.before(::Vagrant::Action::Builtin::Provision, VagrantPlugins::ChefZero::Action.chef_zero_provision)
         end
 
         def destroy(hook)
@@ -38,6 +38,8 @@ module VagrantPlugins
       action_hook(:chef_zero_up, :machine_action_up, &method(:provision))
 
       action_hook(:chef_zero_provision, :machine_action_provision, &method(:provision))
+
+      action_hook(:chef_zero_provision, :machine_action_reload, &method(:provision))
 
       action_hook(:chef_zero_destroy, :machine_action_destroy, &method(:destroy))
 

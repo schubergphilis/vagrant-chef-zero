@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "vagrant-chef-zero"
+  s.license = "MIT"
 
   s.add_dependency "chef-zero", "~> 1.3"
   s.add_dependency "ridley", ">= 1.0.0"
@@ -27,9 +28,12 @@ Gem::Specification.new do |s|
   s.add_dependency 'net-ssh', '~> 2.6.6'
   s.add_dependency 'net-scp', '~> 1.1.0'
 
+  s.add_development_dependency "mocha"
+  s.add_development_dependency "simplecov"
   s.add_development_dependency "rake"
-  s.add_development_dependency "minitest"
-  s.add_development_dependency "debugger"
+  s.add_development_dependency "turn"
+  s.add_development_dependency "minitest", '< 5.0'
+  s.add_development_dependency "minitest-reporters"
 
   # The following block taken from @mitchellh 's vagrant-aws code
 

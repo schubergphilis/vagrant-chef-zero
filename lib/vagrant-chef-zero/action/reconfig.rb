@@ -20,6 +20,11 @@ module VagrantPlugins
             @validation_client_name = get_validation_client_name(env)
             set_config("@validation_client_name", @validation_client_name, env)
           end
+
+          if berkshelf_enabled?(env)
+            @key = get_key_path(env)
+            set_berkshelf_client_key(@key)
+          end
         end
 
         def call(env)

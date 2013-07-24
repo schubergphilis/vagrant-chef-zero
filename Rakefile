@@ -1,8 +1,6 @@
-require 'rake'
 require 'rake/testtask'
 require 'bundler/setup'
 require 'bundler/gem_tasks'
-require 'fileutils'
 
 # Immediately sync all stdout so that tools like buildbot can
 # immediately load in the output.
@@ -14,7 +12,7 @@ Dir.chdir(File.expand_path("../", __FILE__))
 
 # This installs the tasks that help with gem creation and
 # publishing.
-Bundler::GemHelper.install_tasks
+#Bundler::GemHelper.install_tasks
 
 # Default task is to run the unit tests
 task :default => "test"
@@ -24,8 +22,10 @@ Rake::TestTask.new do |t|
 end
 
 task :clean do |t|
+  require 'fileutils'
   FileUtils.rm_rf 'pkg'
   system('bundle exec vagrant destroy -f')
   FileUtils.rm_rf '.vagrant'
+  FileUtils.rm_rf 'coverage'
   FileUtils.rm_rf 'Gemfile.lock'
 end
