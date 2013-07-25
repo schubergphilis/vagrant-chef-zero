@@ -48,6 +48,11 @@ module VagrantPlugins
         Config
       end
 
+      command "chef-zero" do
+        require_relative "command"
+        Command
+      end
+
     end
   end
 end

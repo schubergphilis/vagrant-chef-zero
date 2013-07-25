@@ -3,34 +3,12 @@ require "vagrant"
 module VagrantPlugins
   module ChefZero
     class Config < Vagrant.plugin("2", :config)
-      # Path to role fixtures
-      #
-      # @return [String]
+
       attr_accessor :roles
-
-      # Path to environment fixtures
-      #
-      # @return [String]
       attr_accessor :environments
-
-      # Path to node fixtures
-      #
-      # @return [String]
       attr_accessor :nodes
-
-      # Path to cookbooks
-      #
-      # @return [String]
       attr_accessor :cookbooks
-
-      # Path to data bag fixtures
-      #
-      # @return [String]
       attr_accessor :data_bags
-
-      # Is the plugin enabled?
-      #
-      # @return [TrueClass, FalseClass]
       attr_accessor :enabled
 
       def initialize
