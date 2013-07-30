@@ -36,6 +36,21 @@ config.chef_zero.roles = "../foobar/roles/*.json"
 config.chef_zero.cookbooks = "spec/fixtures/cookbooks"
 ```
 
+Alternatively, you can use `chef_repo_path` and it will attempt to intelligently find the appropriate sub directories:
+
+```ruby
+config.chef_zero.chef_repo_path = "../foobar/my_repo/"
+# This implies
+# config.chef_zero.nodes = "../foobar/nodes"
+# config.chef_zero.environments = "../foobar/environments"
+# config.chef_zero.data_bags = "../foobar/data_bags"
+# config.chef_zero.roles = "../foobar/roles"
+# config.chef_zero.cookbooks = "../foobar/coobooks"
+
+# Failure to find any of these is ok, it will just be ignored.
+```
+
+
 As Vagrant is booting up, `vagrant-chef-zero` will search each specified location for files to upload to Chef-Zero.  The upload will be done via Ridley APIs.
 
 Check out the included [Vagrantfile](https://github.com/andrewgross/vagrant-chef-zero/blob/master/Vagrantfile) for example usage.

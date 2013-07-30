@@ -1,3 +1,7 @@
+## 0.3.0
+
+* Add support for `chef_repo_path`, graciously provided by @tduffield via pull request, as I was taking too long.
+
 ## 0.2.10
 
 * Fix bug where we could find multiple gem paths with 'vagrant' in them, causing the construction of an erroneous Chef Zero binary path.  Fixes [#10](https://github.com/andrewgross/vagrant-chef-zero/issues/10)
