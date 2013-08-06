@@ -127,7 +127,15 @@ module VagrantPlugins
           elsif path.is_a?(Array)
             path
           elsif path.is_a?(String) && File.directory?(path)
+            opath = path
             path = Dir.glob("#{path}/*.json")
+            if path.empty?
+              Dir.glob("#{opath}/*").each do |p|
+                if File.directory?(p) && File.exists?("#{p}/metadata.rb")
+                  path << p
+                end
+              end
+            end
           elsif path.is_a?(String) && File.exists?(path)
             path = [path]
           else
