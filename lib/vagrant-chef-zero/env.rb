@@ -6,6 +6,8 @@ module VagrantPlugins
     class Env
       # @return [Vagrant::UI::Colored]
       attr_accessor :ui
+      # @return [ChefZero::Server]
+      attr_accessor :server
 
       def initialize
         @ui = ::Vagrant::UI::Colored.new.scope('Chef Zero')
