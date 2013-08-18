@@ -2,12 +2,18 @@ module VagrantPlugins
   module ChefZero
     module ServerHelpers
 
+      def chef_zero_binary
+        gem_dirs = ENV['GEM_PATH'].split(':')
+        test_paths = gem_dirs.map { |d| ::File.join(d, "bin", "chef-zero") }
+        found = test_paths.select { |f| ::File.executable?(f) }
+        found.first if found.size > 0
+      end
+
       def start_chef_zero(env)
         port = get_port(env)
         host = get_host(env)
         if ! chef_zero_server_running?(port)
-          vagrant_gems = ENV['GEM_PATH'].split(':').select { |gp| gp.include?('vagrant.d')}.first
-          chef_zero_binary = ::File.join(vagrant_gems, "bin", "chef-zero")
+          env[:chef_zero].ui.info("Using chef-zero binary: '#{chef_zero_binary}'")
           proc = IO.popen("#{chef_zero_binary} --host #{host} --port #{port} 2>&1 > /dev/null")
           env[:chef_zero].ui.info("Starting Chef Zero at http://#{host}:#{port}")
         end
