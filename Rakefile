@@ -9,6 +9,9 @@ $stderr.sync = true
 # Change to the directory of this file.
 Dir.chdir(File.expand_path("../", __FILE__))
 
+# Make testing the default task
+task :default => "rspec_test"
+
 task :rspec_test do |t|
   test_output = %x[ bundle exec rspec spec ]
   puts test_output
