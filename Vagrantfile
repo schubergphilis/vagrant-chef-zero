@@ -10,9 +10,18 @@ Vagrant.configure("2") do |config|
   #config.chef_zero.cookbooks =    "spec/vagrant-chef-zero/fixtures/cookbooks"
   #config.chef_zero.roles = "foobar"
 
+  # Single Box Config
   config.vm.box = ENV['YIPIT_VAGRANT_BOX']
   config.vm.provision :chef_client do |chef|
     chef.run_list = [
     ]
   end
+
+  # config.vm.define :box1 do |box1|
+  #   box1.vm.box = ENV['YIPIT_VAGRANT_BOX']
+  # end
+
+  # config.vm.define :box2 do |box2|
+  #   box2.vm.box = ENV['YIPIT_VAGRANT_BOX']
+  # end
 end
