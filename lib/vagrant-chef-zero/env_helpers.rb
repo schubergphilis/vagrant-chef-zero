@@ -2,6 +2,21 @@ module VagrantPlugins
   module ChefZero
     module EnvHelpers
 
+      def write_knife_config(env)
+        File.open("#{env[:root_path]}/.zero-knife.rb", 'w') do |f|
+          f.puts <<-EOF
+            chef_server_url '#{get_chef_server_url(env)}'
+            node_name 'zero-host'
+            client_key '#{get_key_path(env)}'
+          EOF
+        end
+      end
+
+      def rm_knife_config(env)
+        File.unlink "#{env[:root_path]}/.zero-knife.rb" if File.exists? "#{env[:root_path]}/.zero-knife.rb"
+        File.unlink get_key_path(env) if File.exists? get_key_path(env)
+      end
+
       def server_info(env)
         dict = { host: nil, client_name: nil, client_key: nil }
         provisioners(:chef_client, env).each do |provisioner|

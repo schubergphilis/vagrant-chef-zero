@@ -18,6 +18,8 @@ module VagrantPlugins
           end
 
           start_chef_zero(env)
+          write_knife_config(env)
+
           @app.call(env)
         end
 
