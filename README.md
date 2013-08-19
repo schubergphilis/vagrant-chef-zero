@@ -16,7 +16,7 @@ vagrant plugin install vagrant-chef-zero
 
 ### Compatability
 
-Currently only NIX systems supported at this time due to a call to `lsof` to find running Chef Zero servers.
+Currently only tested on NIX systems, though I believe most NIX only commands have been removed.
 
 As for Vagrant providers, it has only been tested with VirtualBox. It should be possible to add support for other providers by changing certain assumptions, such as always running Chef-Zero on the host machine.
 
@@ -63,6 +63,18 @@ These are uploaded via the `Ridley` gem.  It is the same backend that `Berkshelf
 
 Currently only JSON files are supported as we do not have the Chef libraries to serialize `.rb` files.
 
+### Knife Configuration
+
+When Chef-Zero starts, it will write out `zero-knife.rb` to your current directory.  This will be a valid Knife configuration file with the following fields
+
+```ruby
+chef_server_url "foo:bar"
+node_name "baz"
+client_key "/path/to/tmp/key.pem"
+```
+
+If you wish to manipulate the Chef Zero server manually, you can pass this config file to Knife with `-c .zero-knife.rb`
+
 ### Lingering Chef-Zero Servers
 
 If for some reason you are unable to have Vagrant destroy the Chef-Zero server, you can find the PID it by running `lsof -i tcp:#{port}` where `port` is 4000 by default.
@@ -81,3 +93,9 @@ You don't need to specify one! If no url is specified, `Vagrant-Chef-Zero` will 
 
 Not required.  As `Chef-Zero` does no authentication we can fake this.  If it is left unspecified we will use a default value of `dummy-validator`.
 
+# Contributors
+
+* Tom Duffield (@tduffield)
+* Ben Dean (@b-dean)
+* Jesse Nelson (@spheromak)
+* Mark Cornick (@markcornick)

@@ -1,3 +1,12 @@
+## 0.4.0
+
+* Always write out a simple Knife configuration file to `.zero-knife.rb` to make it easier to use Knife with the server.
+
+* Switch to RSpec for tests.  Thanks to @tduffield for porting the existing tests.
+
+* Chef-Zero now uses the Chef-Zero gem to manage starting and stopping of the server.  While this may change in the future, it is the simplest solution for now.
+
+
 ## 0.3.0
 
 * Add support for `chef_repo_path`, graciously provided by @tduffield via pull request, as I was taking too long.
