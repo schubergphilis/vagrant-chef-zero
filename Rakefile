@@ -26,4 +26,5 @@ task :clean do |t|
   FileUtils.rm_rf '.vagrant'
   FileUtils.rm_rf 'coverage'
   FileUtils.rm_rf 'Gemfile.lock'
+  FileUtils.rm_rf 'zero-knife.rb'
 end
