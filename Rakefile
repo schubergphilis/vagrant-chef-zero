@@ -1,4 +1,3 @@
-require 'rake/testtask'
 require 'bundler/setup'
 require 'bundler/gem_tasks'
 
@@ -10,15 +9,11 @@ $stderr.sync = true
 # Change to the directory of this file.
 Dir.chdir(File.expand_path("../", __FILE__))
 
-# This installs the tasks that help with gem creation and
-# publishing.
-#Bundler::GemHelper.install_tasks
-
-# Default task is to run the unit tests
-task :default => "test"
-
-Rake::TestTask.new do |t|
-  t.pattern = 'spec/**/*_spec.rb'
+task :rspec_test do |t|
+  test_output = %x[ bundle exec rspec spec ]
+  puts test_output
+  coverage = %x[ cat ./coverage/.last_run.json | grep covered | awk '{print $2}' ]
+  puts "Coverage: #{coverage}"
 end
 
 task :clean do |t|

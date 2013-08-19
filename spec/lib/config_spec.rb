@@ -12,12 +12,12 @@ describe "VagrantPlugins::ChefZero::Config" do
     it "should set all paths to nil" do 
       d = DummyClass.new
       d.finalize!
-      d.chef_repo_path.must_equal nil
-      d.roles.must_equal nil
-      d.environments.must_equal nil
-      d.nodes.must_equal nil
-      d.cookbooks.must_equal nil
-      d.data_bags.must_equal nil
+      d.chef_repo_path.should eql nil
+      d.roles.should eql nil
+      d.environments.should eql nil
+      d.nodes.should eql nil
+      d.cookbooks.should eql nil
+      d.data_bags.should eql nil
     end
 
   end
@@ -28,21 +28,22 @@ describe "VagrantPlugins::ChefZero::Config" do
       d = DummyClass.new
       d.chef_repo_path = "/foo"
       d.finalize!
-      d.chef_repo_path.must_equal "/foo"
+      d.chef_repo_path.should eql "/foo"
     end
     
 
     it "should use sane defaults and prefix all fixture paths with the chef_repo_path" do
+      DummyClass.any_instance.stub(:path_exists?).and_return(true)
       d = DummyClass.new
-      d.stubs(:path_exists?).returns(true)
+      #d.stubs(:path_exists?).returns(true)
       d.chef_repo_path = "/foo"
       d.finalize!
 
-      d.roles.must_equal "/foo/roles"
-      d.environments.must_equal "/foo/environments"
-      d.nodes.must_equal "/foo/nodes"
-      d.cookbooks.must_equal "/foo/cookbooks"
-      d.data_bags.must_equal "/foo/data_bags"
+      d.roles.should eql "/foo/roles"
+      d.environments.should eql "/foo/environments"
+      d.nodes.should eql "/foo/nodes"
+      d.cookbooks.should eql "/foo/cookbooks"
+      d.data_bags.should eql "/foo/data_bags"
     end
 
 
@@ -54,7 +55,7 @@ describe "VagrantPlugins::ChefZero::Config" do
       d.chef_repo_path = "/foo"
       d.finalize!
 
-      d.roles.must_equal nil
+      d.roles.should eql nil
     end
   end
 
@@ -63,22 +64,20 @@ describe "VagrantPlugins::ChefZero::Config" do
     describe "specific fixture path is also defined" do
 
       it "should use sane defaults for all fixture paths except the overloaded path" do
-        DummyClass.any_instance.stubs(:path_exists?).returns(true)
+        DummyClass.any_instance.stub(:path_exists?).and_return(true)
         d = DummyClass.new
         d.chef_repo_path = "/foo"
         d.roles = "/bar/roles"
         d.finalize!
 
-        d.roles.must_equal "/bar/roles"
-        d.environments.must_equal "/foo/environments"
-        d.nodes.must_equal "/foo/nodes"
-        d.cookbooks.must_equal "/foo/cookbooks"
-        d.data_bags.must_equal "/foo/data_bags"
+        d.roles.should eql "/bar/roles"
+        d.environments.should eql "/foo/environments"
+        d.nodes.should eql "/foo/nodes"
+        d.cookbooks.should eql "/foo/cookbooks"
+        d.data_bags.should eql "/foo/data_bags"
       end
 
     end
   end
   
-
-
 end

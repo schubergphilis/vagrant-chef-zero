@@ -6,7 +6,7 @@ install:
 clean:
 	@bundle exec rake clean
 test:
-	@bundle exec rake test
+	@bundle exec rake rspec_test
 
 vagrant:
 	@bundle exec vagrant up
