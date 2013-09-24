@@ -1,3 +1,7 @@
+
+NOTE: This version (`0.5.0`) is in beta status as I have not had time to fully test it due to issues with my Vagrant environment (old versions will still be availabe in the `0.4.X` series)
+
+
 # Vagrant-Chef-Zero
 [![Build Status](https://travis-ci.org/andrewgross/vagrant-chef-zero.png)](https://travis-ci.org/andrewgross/vagrant-chef-zero)
 [![Code Climate](https://codeclimate.com/repos/51e419cc89af7e3a2a003663/badges/c7a21cef56cddb54ab12/gpa.png)](https://codeclimate.com/repos/51e419cc89af7e3a2a003663/feed)

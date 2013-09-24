@@ -1,3 +1,9 @@
+## 0.5.0
+
+NOTE: This version is in beta status as I have not had time to fully test it due to issues with my Vagrant environment (old versions will still be availabe in the `0.4.X` series)
+
+* Add support for `.rb` files by using the Chef Gem, thanks to @mattray for the PR.  
+
 ## 0.4.2
 
 * Keep existing Berkshelf client key if one is already defined. Thanks to [Greg Symons](https://github.com/gregsymons) for the PR. 
