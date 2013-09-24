@@ -1,3 +1,5 @@
+require 'chef'
+
 module VagrantPlugins
   module ChefZero
     module Action
@@ -64,7 +66,13 @@ module VagrantPlugins
 
           environments = select_items(path)
           environments.each do |e|
-            environment = JSON.parse(IO.read(e)).to_hash
+            if e =~ /.rb$/
+              envrb = ::Chef::Environment.new
+              envrb.from_file(e)
+              environment = envrb.to_hash
+            else
+              environment = JSON.parse(IO.read(e)).to_hash
+            end
             if ! existing_envs.any?{ |ee| ee['name'] == environment['name'] }
               env[:chef_zero].ui.info("Creating Environment #{environment['name']}")
               @conn.environment.create(environment)
@@ -81,7 +89,13 @@ module VagrantPlugins
 
           roles = select_items(path)
           roles.each do |r|
-          role = JSON.parse(IO.read(r)).to_hash
+            if r =~ /.rb$/
+              rrb = ::Chef::Role.new
+              rrb.from_file(r)
+              role = rrb.to_hash
+            else
+              role = JSON.parse(IO.read(r)).to_hash
+            end
             if ! existing_roles.any?{ |er| er['name'] == role['name'] }
               env[:chef_zero].ui.info("Creating role #{role['name']}")
               @conn.role.create(role)
@@ -127,7 +141,7 @@ module VagrantPlugins
           elsif path.is_a?(Array)
             path
           elsif path.is_a?(String) && File.directory?(path)
-            path = Dir.glob("#{path}/*.json")
+            path = Dir.glob("#{path}/*.json")+Dir.glob("#{path}/*.rb")
           elsif path.is_a?(String) && File.exists?(path)
             path = [path]
           else
