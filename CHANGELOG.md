@@ -1,3 +1,14 @@
+## 0.4.2
+
+* Keep existing Berkshelf client key if one is already defined. Thanks to [Greg Symons](https://github.com/gregsymons) for the PR. 
+
+## 0.4.1
+
+* This is a belated changelog, as I apparently did not push one with this version in the past
+
+* Fix issues with Chef-Zero and Vagrant reload action.  See commit 2a2c6673d303f0768aec2909f19713a9f1ebb14e for more details
+
+
 ## 0.4.0
 
 * Always write out a simple Knife configuration file to `.zero-knife.rb` to make it easier to use Knife with the server.
