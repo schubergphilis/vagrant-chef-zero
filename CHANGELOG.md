@@ -1,3 +1,11 @@
+## 0.5.1
+
+Minor bugfixes (hopefully) to fix installation behavior and berkshelf issues.
+
+* Back out change adding ||= to berkshelf key replacement as it was causing issues.
+
+* Attempt to match the Chef dependency order more closely to avoid ruby gem installation issues
+
 ## 0.5.0
 
 NOTE: This version is in beta status as I have not had time to fully test it due to issues with my Vagrant environment (old versions will still be availabe in the `0.4.X` series)
