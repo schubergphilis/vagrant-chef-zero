@@ -9,7 +9,7 @@ describe "VagrantPlugins::ChefZero::Config" do
 
   describe "config object is created" do
 
-    it "should set all paths to nil" do 
+    it "should set all paths to nil" do
       d = DummyClass.new
       d.finalize!
       d.chef_repo_path.should eql nil
@@ -22,15 +22,15 @@ describe "VagrantPlugins::ChefZero::Config" do
 
   end
 
-  describe "chef_repo_path is the only defined path" do 
-    
+  describe "chef_repo_path is the only defined path" do
+
     it "chef_repo_path should be set" do
       d = DummyClass.new
       d.chef_repo_path = "/foo"
       d.finalize!
       d.chef_repo_path.should eql "/foo"
     end
-    
+
 
     it "should use sane defaults and prefix all fixture paths with the chef_repo_path" do
       DummyClass.any_instance.stub(:path_exists?).and_return(true)
@@ -59,7 +59,7 @@ describe "VagrantPlugins::ChefZero::Config" do
     end
   end
 
-  describe "chef_repo_path is defined" do 
+  describe "chef_repo_path is defined" do
 
     describe "specific fixture path is also defined" do
 
@@ -77,7 +77,24 @@ describe "VagrantPlugins::ChefZero::Config" do
         d.data_bags.should eql "/foo/data_bags"
       end
 
+      it "should allow using ~ in the path" do
+        oldhome = ENV['HOME']
+        ENV['HOME'] = '/home/user'
+        DummyClass.any_instance.stub(:path_exists?).and_return(true)
+        d = DummyClass.new
+        d.chef_repo_path = "~/foo"
+        d.data_bags = "~/bar/data_bags"
+        d.finalize!
+
+        d.roles.should eql "/home/user/foo/roles"
+        d.environments.should eql "/home/user/foo/environments"
+        d.nodes.should eql "/home/user/foo/nodes"
+        d.cookbooks.should eql "/home/user/foo/cookbooks"
+        d.data_bags.should eql "/home/user/bar/data_bags"
+        ENV['HOME'] = oldhome
+      end
+
     end
   end
-  
+
 end
