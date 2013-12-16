@@ -1,3 +1,9 @@
+## 0.5.2
+
+Update `net-ssh` dependency to work with the newest version of Vagrant 1.4.  Thanks to @paulczar
+
+* Search for the Chef-Zero gem inside of Vagrant first, then fall back to searching other gem paths.  Mostly a fix to make testing easier.
+
 ## 0.5.1
 
 Minor bugfixes (hopefully) to fix installation behavior and berkshelf issues.
