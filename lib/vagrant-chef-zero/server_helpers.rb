@@ -9,10 +9,47 @@ module VagrantPlugins
         host = get_host(env)
 
         unless chef_zero_server_running?(host, port)
-          vagrant_gems = ENV['GEM_PATH'].split(':').select { |gp| gp.include?('vagrant.d')}.first
-          chef_zero_binary = ::File.join(vagrant_gems, "bin", "chef-zero")
+          chef_zero_binary = get_chef_zero_binary(env)
           fork_process(chef_zero_binary, host, port, env)
           wait_for_server_to_start(host, port, env)
+        end
+      end
+
+      def get_chef_zero_binary(env)
+        # We want to prefer the vagrant.d path, but for development
+        # we want to find any valid path that has chef-zero
+        paths = Gem.path
+        vagrant_path = paths.select { |gp| gp.include?('vagrant.d')}.first
+        if has_chef_zero_binary?(vagrant_path)
+          return find_chef_zero_binary(vagrant_path)
+        end
+        paths.each do |path|
+          if has_chef_zero_binary?(path)
+            return find_chef_zero_binary(path)
+          end
+        end
+        env[:chef_zero].ui.warn("Could not find Chef Zero binary in any path in #{Gem.path}")
+        raise 
+      end
+
+      def has_chef_zero_binary?(path)
+        potential_binary = find_chef_zero_binary(path)
+        if potential_binary
+          return ::File.exists?(potential_binary)
+        else
+          return false
+        end
+      end
+
+      def find_chef_zero_binary(path)
+        # Assuming a path from Gem.path
+        #potential_binary = ::File.join(path, "bin", "chef-zero")
+        gems_path = ::File.join(path, "gems")
+        chef_zero_gem = Dir["#{gems_path}/*"].select { |gp| gp.include?('chef-zero')}.first
+        if chef_zero_gem
+          return ::File.join(chef_zero_gem, "bin", "chef-zero")
+        else
+          return nil
         end
       end
 
