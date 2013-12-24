@@ -45,7 +45,7 @@ module VagrantPlugins
         # Assuming a path from Gem.path
         #potential_binary = ::File.join(path, "bin", "chef-zero")
         gems_path = ::File.join(path, "gems")
-        chef_zero_gem = Dir["#{gems_path}/*"].select { |gp| gp.include?('chef-zero')}.first
+        chef_zero_gem = Dir["#{gems_path}/*"].select { |gp| gp.include?('/chef-zero-')}.first
         if chef_zero_gem
           return ::File.join(chef_zero_gem, "bin", "chef-zero")
         else
