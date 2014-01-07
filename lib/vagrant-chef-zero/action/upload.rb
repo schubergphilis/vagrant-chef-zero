@@ -34,7 +34,7 @@ module VagrantPlugins
 
         def upload_cookbooks(env)
           path = env[:machine].config.chef_zero.cookbooks
-          cookbooks = select_items(path)
+          cookbooks = select_cookbooks(path)
           env[:chef_zero].ui.info("Loading cookbooks from #{path}") unless cookbooks.empty?
           cookbooks.each do |cookbook|
             name = File.basename(cookbook)
@@ -131,6 +131,38 @@ module VagrantPlugins
               end
             end
           end
+        end
+
+        def select_cookbooks(path)
+          cookbook_paths = []
+          if path.nil?
+            cookbook_paths = []
+          elsif path.respond_to?('empty?') && path.empty?
+            cookbook_paths = []
+          elsif path.is_a?(Array)
+            cookbook_paths = path
+          elsif path.is_a?(String) && is_valid_cookbook?(path)
+            cookbook_paths = [path]
+          elsif path.is_a?(String) && File.directory?(path) && is_valid_cookbook_directory?(path)
+            cookbook_paths = select_valid_cookbooks(path)
+          else
+            @env[:chef_zero].ui.warn("Warning: Unable to normalize #{path}, skipping")
+            cookbook_paths = []
+          end
+          cookbook_paths
+        end
+
+        def is_valid_cookbook_directory?(path)
+          return ! select_valid_cookbooks(path).empty?
+        end
+
+        def select_valid_cookbooks(path)
+          directories = Dir.glob("#{path}/*")
+          directories.select{ |s| is_valid_cookbook?(s) }
+        end
+
+        def is_valid_cookbook?(path)
+          File.exists?("#{path}/metadata.rb") || File.exists?("#{path}/metadata.json")
         end
 
         def select_items(path)
