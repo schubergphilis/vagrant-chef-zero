@@ -1,6 +1,7 @@
 *.lock
 .zero-knife.rb
 .vagrant
+.bundle
 pkg
 coverage
 Berksfile
