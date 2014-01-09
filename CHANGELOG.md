@@ -1,3 +1,11 @@
+## 0.6.0
+
+Remove some dependency cruft, add better cookbook searching.
+
+* Remove custom dependencies for `i18n`, `json`, `net-ssh`, `net-scp` and `activesupport`.  Still depend on Chef, but no longer force specific gem versions. Seems to install properly on Vagrant 1.4.
+
+* Add better cookbook searching algorithm
+
 ## 0.5.2
 
 Update `net-ssh` dependency to work with the newest version of Vagrant 1.4.  Thanks to @paulczar
@@ -16,11 +24,11 @@ Minor bugfixes (hopefully) to fix installation behavior and berkshelf issues.
 
 NOTE: This version is in beta status as I have not had time to fully test it due to issues with my Vagrant environment (old versions will still be availabe in the `0.4.X` series)
 
-* Add support for `.rb` files by using the Chef Gem, thanks to @mattray for the PR.  
+* Add support for `.rb` files by using the Chef Gem, thanks to @mattray for the PR.
 
 ## 0.4.2
 
-* Keep existing Berkshelf client key if one is already defined. Thanks to [Greg Symons](https://github.com/gregsymons) for the PR. 
+* Keep existing Berkshelf client key if one is already defined. Thanks to [Greg Symons](https://github.com/gregsymons) for the PR.
 
 ## 0.4.1
 
