@@ -140,7 +140,13 @@ module VagrantPlugins
           elsif path.respond_to?('empty?') && path.empty?
             cookbook_paths = []
           elsif path.is_a?(Array)
-            cookbook_paths = path
+            path.each do |single_path|
+              if is_valid_cookbook?(single_path)
+                cookbook_paths << single_path
+              elsif is_valid_cookbook_directory?(single_path)
+                cookbook_paths = cookbook_paths + select_valid_cookbooks(single_path)
+              end
+            end
           elsif path.is_a?(String) && is_valid_cookbook?(path)
             cookbook_paths = [path]
           elsif path.is_a?(String) && File.directory?(path) && is_valid_cookbook_directory?(path)

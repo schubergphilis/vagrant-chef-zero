@@ -17,6 +17,9 @@ describe "VagrantPlugins::ChefZero::Action::Upload" do
       end
 
     end
+
+    File.stub(:exists?).and_return(false)
+    File.stub(:directory?).and_return(false)
   end
 
   describe "Normalizing Cookbook Path" do
@@ -41,12 +44,42 @@ describe "VagrantPlugins::ChefZero::Action::Upload" do
 
     end
 
-    describe "with a non-empty array" do
+    describe "with a non-empty array of cookbooks" do
 
       it "should return the given array" do
         path = ["foo"]
+
+        File.stub(:exists?).with("foo/metadata.rb").and_return(true)
+
         d = DummyUpload.new("foo", "bar")
         d.select_cookbooks(path).should eql path
+      end
+
+    end
+
+    describe "with a non-empty array of cookbook directories" do
+
+      it "should return the given array" do
+        paths = ["./foo/cookbooks", "./foo/more-cookbooks"]
+        cookbooks = [
+          "./foo/cookbooks/bar",
+          "./foo/cookbooks/baz",
+          "./foo/more-cookbooks/beep"
+        ]
+
+        File.stub(:directory?).with(paths[0]).and_return(true)
+        Dir.stub(:glob).with("#{paths[0]}/*").and_return(["#{paths[0]}/bar", "#{paths[0]}/baz"])
+
+        File.stub(:exists?).with("#{paths[0]}/bar/metadata.rb").and_return(true)
+        File.stub(:exists?).with("#{paths[0]}/baz/metadata.json").and_return(true)
+
+        File.stub(:directory?).with(paths[1]).and_return(true)
+        Dir.stub(:glob).with("#{paths[1]}/*").and_return(["#{paths[1]}/beep"])
+
+        File.stub(:exists?).with("#{paths[1]}/beep/metadata.rb").and_return(true)
+
+        d = DummyUpload.new("foo", "bar")
+        d.select_cookbooks(paths).should eql cookbooks
       end
 
     end
@@ -84,7 +117,6 @@ describe "VagrantPlugins::ChefZero::Action::Upload" do
         File.stub(:directory?).with(path).and_return(true)
         Dir.stub(:glob).with("#{path}/*").and_return(["#{path}/bar", "#{path}/baz"])
 
-        File.stub(:exists?).and_return(false)
         File.stub(:exists?).with("#{path}/bar/metadata.rb").and_return(true)
         File.stub(:exists?).with("#{path}/baz/metadata.json").and_return(true)
 
@@ -98,9 +130,6 @@ describe "VagrantPlugins::ChefZero::Action::Upload" do
 
       it "should send a UI warning and return an empty array" do
         path = "foo"
-        File.stub(:exists?).and_return(false)
-        File.stub(:directory?).and_return(false)
-
         d = DummyUpload.new("foo", "bar")
         d.select_cookbooks(path).should eql []
       end
