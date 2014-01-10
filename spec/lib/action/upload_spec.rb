@@ -84,6 +84,28 @@ describe "VagrantPlugins::ChefZero::Action::Upload" do
 
     end
 
+    describe "with a non-empty array of cookbooks and cookbook directories" do
+
+      it "should return the given array" do
+        paths = ["foo", "./foo/more-cookbooks"]
+        cookbooks = [
+          "foo",
+          "./foo/more-cookbooks/beep"
+        ]
+
+        File.stub(:exists?).with("#{paths[0]}/metadata.json").and_return(true)
+
+        File.stub(:directory?).with(paths[1]).and_return(true)
+        Dir.stub(:glob).with("#{paths[1]}/*").and_return(["#{paths[1]}/beep"])
+
+        File.stub(:exists?).with("#{paths[1]}/beep/metadata.rb").and_return(true)
+
+        d = DummyUpload.new("foo", "bar")
+        d.select_cookbooks(paths).should eql cookbooks
+      end
+
+    end
+
     describe "with a string that is a path to valid cookbook with metadata.rb" do
 
       it "should return the given path in an array" do
