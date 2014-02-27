@@ -110,7 +110,7 @@ module VagrantPlugins
 
       def kill_process(env, pid)
         env[:chef_zero].ui.info("Stopping Chef Zero")
-        system("kill -s SIGTERM #{pid}")
+        system("kill -s TERM #{pid}")
       end
 
       def get_chef_zero_server_pid(port)
