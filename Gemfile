@@ -12,3 +12,5 @@ group :development do
   gem "debugger"
   gem "vagrant-berkshelf", ">= 1.3.3"
 end
+
+gem "chef-zero"
