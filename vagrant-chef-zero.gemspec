@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project         = "vagrant-chef-zero"
   s.license = "MIT"
 
-  s.add_dependency "chef-zero", "~> 1.3"
+  s.add_dependency "chef-zero", ">= 1.3"
   s.add_dependency "ridley", ">= 1.0.0"
   s.add_dependency "chef", "~> 11.0"
 
