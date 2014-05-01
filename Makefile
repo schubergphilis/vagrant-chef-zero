@@ -9,7 +9,11 @@ test:
 	@bundle exec rake rspec_test
 
 vagrant:
-	@bundle exec vagrant up
+	@if [ -a .vagrant ]; then\
+		bundle exec vagrant provision;\
+	else\
+		bundle exec vagrant up;\
+	fi
 
 release:
 	@bundle exec rake release
