@@ -15,16 +15,9 @@ Gem::Specification.new do |s|
   s.rubyforge_project         = "vagrant-chef-zero"
   s.license = "MIT"
 
-  s.add_dependency "chef-zero", ">= 1.3"
+  s.add_dependency "chef-zero", "~> 2.0"
   s.add_dependency "ridley", ">= 1.0.0"
   s.add_dependency "chef", "~> 11.0"
-
-  s.add_development_dependency "mocha"
-  s.add_development_dependency "simplecov"
-  s.add_development_dependency "rake"
-  s.add_development_dependency "rspec"
-
-  # The following block taken from @mitchellh 's vagrant-aws code
 
   # The following block of code determines the files that should be included
   # in the gem. It does this by reading all the files in the directory where

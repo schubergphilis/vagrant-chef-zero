@@ -4,7 +4,7 @@ NOTE: This version (`0.5.0`) is in beta status as I have not had time to fully t
 
 # Vagrant-Chef-Zero
 [![Build Status](https://travis-ci.org/andrewgross/vagrant-chef-zero.png)](https://travis-ci.org/andrewgross/vagrant-chef-zero)
-[![Code Climate](https://codeclimate.com/repos/51e419cc89af7e3a2a003663/badges/c7a21cef56cddb54ab12/gpa.png)](https://codeclimate.com/repos/51e419cc89af7e3a2a003663/feed)
+[![Code Climate](https://codeclimate.com/github/andrewgross/vagrant-chef-zero.png)](https://codeclimate.com/github/andrewgross/vagrant-chef-zero)
 [![Dependency Status](https://gemnasium.com/andrewgross/vagrant-chef-zero.png)](https://gemnasium.com/andrewgross/vagrant-chef-zero)
 [![Coverage Status](https://coveralls.io/repos/andrewgross/vagrant-chef-zero/badge.png)](https://coveralls.io/r/andrewgross/vagrant-chef-zero)
 
