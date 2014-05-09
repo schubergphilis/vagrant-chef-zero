@@ -7,4 +7,5 @@ branches:
   only:
     - master
 before_install:
+  - gem uninstall -i /home/travis/.rvm/gems/ruby-2.0.0-p451@global bundler
   - gem install bundler --version 1.5.2
