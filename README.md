@@ -103,3 +103,6 @@ Not required.  As `Chef-Zero` does no authentication we can fake this.  If it is
 * Ben Dean (@b-dean)
 * Jesse Nelson (@spheromak)
 * Mark Cornick (@markcornick)
+* Jesse Adams (@jesseadams)
+* Andrew Havens (@andrewhavens)
+* Bao Nguyen (@sysbot)
