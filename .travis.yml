@@ -8,4 +8,4 @@ branches:
     - master
 before_script:
   - gem uninstall bundler
-  - gem install bundler --version 1.6.2
+  - gem install bundler --version 1.5.2
