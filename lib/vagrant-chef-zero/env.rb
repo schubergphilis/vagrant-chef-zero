@@ -10,7 +10,13 @@ module VagrantPlugins
       attr_accessor :server
 
       def initialize
-        @ui = ::Vagrant::UI::Colored.new.scope('Chef Zero')
+        vagrant_version = Gem::Version.new(::Vagrant::VERSION)
+        if vagrant_version >= Gem::Version.new("1.5")
+          @ui = ::Vagrant::UI::Colored.new
+          @ui.opts[:target] = 'Butcher'
+        elsif vagrant_version >= Gem::Version.new("1.2")
+          @ui = ::Vagrant::UI::Colored.new.scope('Chef Zero')
+        end
       end
     end
   end

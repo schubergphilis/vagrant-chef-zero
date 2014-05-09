@@ -1,3 +1,13 @@
+## 0.7.0
+
+* Allow using the latest version of `Chef-Zero`
+* Compatability fix to work with Vagrant 1.5, thanks to @andrewhavens and @sysbot for fixes.
+
+NOTE: Attempting to work on migrating to `chef-api` instead of `ridley` to help with dependency issues.
+
+NOTE: May be an issue if we do not constrain `ridley` to an upper bound so that `vagrant` doesn't grab a broken version. Candidate version `'ridley', '~> 1.2.1'`.
+
+
 ## 0.6.0
 
 Remove some dependency cruft, add better cookbook searching.

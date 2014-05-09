@@ -29,7 +29,7 @@ module VagrantPlugins
           end
         end
         env[:chef_zero].ui.warn("Could not find Chef Zero binary in any path in #{Gem.path}")
-        raise 
+        raise
       end
 
       def has_chef_zero_binary?(path)
@@ -43,7 +43,9 @@ module VagrantPlugins
 
       def find_chef_zero_binary(path)
         # Assuming a path from Gem.path
-        #potential_binary = ::File.join(path, "bin", "chef-zero")
+        if path == nil
+          return nil
+        end
         gems_path = ::File.join(path, "gems")
         chef_zero_gem = Dir["#{gems_path}/*"].select { |gp| gp.include?('/chef-zero-')}.first
         if chef_zero_gem

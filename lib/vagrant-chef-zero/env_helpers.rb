@@ -102,11 +102,11 @@ module VagrantPlugins
       end
 
       def chef_zero_enabled?(env)
-        env[:global_config].chef_zero.enabled && chef_client?(env)
+        env[:machine].config.chef_zero.enabled && chef_client?(env)
       end
 
       def berkshelf_enabled?(env)
-        env[:global_config].berkshelf.enabled == true && chef_client?(env)
+        env[:machine].config.berkshelf.enabled == true && chef_client?(env)
       end
 
       def set_berkshelf_client_key(value)

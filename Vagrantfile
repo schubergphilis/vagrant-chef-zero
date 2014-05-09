@@ -13,8 +13,7 @@ Vagrant.configure("2") do |config|
   # Single Box Config
   config.vm.box = "precise64"
   config.vm.provision :chef_client do |chef|
-    chef.run_list = [
-    ]
+    chef.run_list = []
   end
 
 end
