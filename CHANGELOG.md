@@ -1,3 +1,7 @@
+## 0.7.1
+
+* Allow passing in mixed cookbook directories and absolute paths.  Thanks @jesseadams
+
 ## 0.7.0
 
 * Allow using the latest version of `Chef-Zero`
