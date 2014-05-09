@@ -6,6 +6,6 @@ gemfile:
 branches:
   only:
     - master
-before_script:
+before_install:
   - gem uninstall bundler
   - gem install bundler --version 1.5.2
