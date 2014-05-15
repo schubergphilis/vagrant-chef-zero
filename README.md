@@ -18,7 +18,7 @@ Note: Only NIX systems supported at this time due to a call to `lsof` to find ru
 vagrant plugin install vagrant-chef-zero
 ```
 
-### Compatability
+### Compatibility
 
 Currently only tested on NIX systems, though I believe most NIX only commands have been removed.
 
