@@ -3,7 +3,7 @@ Vagrant.require_plugin "vagrant-chef-zero"
 
 Vagrant.configure("2") do |config|
  # config.berkshelf.enabled = true
-  config.chef_zero.chef_repo_path = "spec/vagrant-chef-zero/fixtures/"
+  config.chef_zero.chef_repo_path = "spec/vagrant-chef-zero/fixtures"
   #config.chef_zero.nodes =        "spec/vagrant-chef-zero/fixtures/nodes"
   #config.chef_zero.environments = "spec/vagrant-chef-zero/fixtures/environments"
   #config.chef_zero.data_bags =    "spec/vagrant-chef-zero/fixtures/data_bags"
