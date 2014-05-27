@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
   #config.chef_zero.roles = "foobar"
 
   # Single Box Config
-  config.vm.box = "precise64"
+  config.vm.box = "hashicorp/precise64"
   config.vm.provision :chef_client do |chef|
     chef.run_list = []
   end
