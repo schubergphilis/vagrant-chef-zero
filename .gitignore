@@ -1,4 +1,3 @@
-*.lock
 .zero-knife.rb
 .vagrant
 .bundle
