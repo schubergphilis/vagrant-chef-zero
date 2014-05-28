@@ -1,6 +1,7 @@
 ## 0.7.1
 
 * Allow passing in mixed cookbook directories and absolute paths.  Thanks @jesseadams
+* Some minor development fixes regarding ruby
 
 ## 0.7.0
 
