@@ -39,7 +39,7 @@ module VagrantPlugins
           cookbooks.each do |cookbook|
             name = File.basename(cookbook)
             env[:chef_zero].ui.info("Uploading Cookbook #{name}")
-            @conn.cookbook.upload(cookbook, options: {name: name})
+            @conn.cookbook.upload(cookbook, options = { force: true })
           end
         end
 
