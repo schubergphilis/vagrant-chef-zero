@@ -230,7 +230,9 @@ DEPENDENCIES
   mocha
   rake
   rspec
+  ruby-wmi
   simplecov
   vagrant!
   vagrant-berkshelf (>= 2.0.1)
   vagrant-chef-zero!
+  win32-service
