@@ -34,8 +34,8 @@ module VagrantPlugins
         end
       end
 
-      def provisioners(name, env)
-        env[:machine].config.vm.provisioners.select { |prov| prov.name == name }
+      def provisioners(type, env)
+        env[:machine].config.vm.provisioners.select { |prov| prov.type == type }
       end
 
       def get_validation_client_name(env)
