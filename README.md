@@ -1,3 +1,5 @@
+NOTE: @miguelaferreira will be maintaining this project going forward as I no longer use the project.
+
 
 NOTE: This version (`0.5.0`) is in beta status as I have not had time to fully test it due to issues with my Vagrant environment (old versions will still be availabe in the `0.4.X` series)
 
