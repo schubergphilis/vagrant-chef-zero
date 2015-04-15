@@ -1,3 +1,7 @@
+## License Change
+
+* April 15, 2015 license changed to Apache License v2.0 to allow the new maintainer to work on this project during working hours.
+
 ## 0.7.1
 
 * Allow passing in mixed cookbook directories and absolute paths.  Thanks @jesseadams
