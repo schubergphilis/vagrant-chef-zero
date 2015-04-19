@@ -94,7 +94,7 @@ module VagrantPlugins
         begin
           TCPSocket.new(ip, port).close
           true
-        rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH
+        rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH, Errno::ENETUNREACH
           false
         end
       end
