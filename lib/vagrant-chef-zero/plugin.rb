@@ -21,7 +21,7 @@ module VagrantPlugins
         end
 
         def destroy(hook)
-          hook.before(VagrantPlugins::ProviderVirtualBox::Action::DestroyUnusedNetworkInterfaces, VagrantPlugins::ChefZero::Action.chef_zero_destroy)
+          hook.after(::Vagrant::Action::Builtin::ConfigValidate, VagrantPlugins::ChefZero::Action.chef_zero_destroy)
         end
 
       end

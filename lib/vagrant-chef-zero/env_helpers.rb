@@ -2,6 +2,15 @@ module VagrantPlugins
   module ChefZero
     module EnvHelpers
 
+      def self.mutex
+        # handle actions that may run in parallel with certain providers
+        @mutex ||= Mutex.new
+      end
+
+      def self.active_machines(env)
+        @active ||= env[:machine].env.active_machines
+      end
+
       def write_knife_config(env)
         File.open("#{env[:root_path]}/.zero-knife.rb", 'w') do |f|
           f.puts <<-EOF
@@ -35,7 +44,9 @@ module VagrantPlugins
       end
 
       def provisioners(name, env)
-        env[:machine].config.vm.provisioners.select { |prov| prov.name == name || prov.type == name }
+        env[:machine].config.vm.provisioners.select { |prov|
+          ( defined? prov.type and prov.type == name ) or prov.name == name
+        }
       end
 
       def get_validation_client_name(env)
