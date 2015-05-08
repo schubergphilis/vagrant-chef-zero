@@ -6,3 +6,4 @@ coverage
 Berksfile
 Gemfile.lock
 vagrant-chef-zero-*.gem
+vendor/

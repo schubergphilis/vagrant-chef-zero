@@ -8,6 +8,8 @@ group :development do
   # Vagrant environment itself using `vagrant plugin`.
   gem "vagrant", :git => "git://github.com/mitchellh/vagrant.git", :tag => "v1.7.2"
 
+  gem 'coveralls', require: false
+
   gem "mocha"
   gem "simplecov"
   gem "rake"

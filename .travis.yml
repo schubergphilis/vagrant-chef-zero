@@ -1,6 +1,7 @@
 language: ruby
+notifications:
+  email:
+    - int-toolkit@schubergphilis.com
 rvm:
   - 2.1.2
-branches:
-  only:
-    - master
+script: rake

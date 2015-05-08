@@ -1,3 +1,13 @@
+## 1.0.0
+
+* Allow using relative paths in plugin configuration (PR #27)
+* Upload a cookbook even if it had been frozen (PR #60)
+* Fix network unreacheable error when destroying VMs (PR #62)
+* Fix provisioner name discovery for non standard Vagrantfile (PR #66)
+* Add support for Vagrant 1.7 (PR #68)
+* Include ruby windows dependencies (PR #68)
+* Run the plugin with the same ruby as vagrant (PR #68)
+
 ## License Change
 
 * April 15, 2015 license changed to Apache License v2.0 to allow the new maintainer to work on this project during working hours.
