@@ -1,6 +1,6 @@
 module VagrantPlugins
   module ChefZero
-    VERSION = "0.7.1"
+    VERSION = "1.0.0"
     NAME = "vagrant-chef-zero"
 
     def self.describe(opts={})
