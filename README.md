@@ -102,3 +102,5 @@ Not required.  As `Chef-Zero` does no authentication we can fake this.  If it is
 * Jesse Adams (@jesseadams)
 * Andrew Havens (@andrewhavens)
 * Bao Nguyen (@sysbot)
+* Miguel Ferreira (@miguelaferreira)
+* Timothy van Zadelhoff (@j00p34)
