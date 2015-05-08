@@ -1,6 +1,7 @@
 require 'simplecov'
 SimpleCov.formatter = SimpleCov::Formatter::SimpleFormatter
 SimpleCov.start
+Coveralls.wear!
 
 require_relative "../lib/vagrant-chef-zero"
 require_relative "../lib/vagrant-chef-zero/server_helpers.rb"
