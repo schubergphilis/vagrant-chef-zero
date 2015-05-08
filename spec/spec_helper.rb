@@ -1,5 +1,6 @@
 require 'json'
 require 'simplecov'
+require 'coveralls'
 
 require_relative "../lib/vagrant-chef-zero"
 require_relative "../lib/vagrant-chef-zero/server_helpers.rb"
