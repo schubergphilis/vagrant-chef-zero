@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "vagrant-chef-zero"
-  s.license = "MIT"
+  s.license = "Apache v2.0"
 
   s.add_dependency "chef-zero", "~> 2.0"
   s.add_dependency "ridley", ">= 1.0.0"
