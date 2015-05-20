@@ -1,3 +1,7 @@
+## 1.0.1
+
+* Update licence in Gemspec
+
 ## 1.0.0
 
 * Allow using relative paths in plugin configuration (PR #27)
