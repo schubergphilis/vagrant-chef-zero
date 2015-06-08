@@ -18,10 +18,10 @@ group :development do
 end
 
 # Windows platform requirements to run chef-zero
-platforms :mswin, :mingw do
+group :windows do
   gem "ruby-wmi"
   gem "win32-service"
-end
+end if (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|ming32/)
 
 # Force Vagrant to load our plugin during development (assume we are running from top level)
 group :plugins do
