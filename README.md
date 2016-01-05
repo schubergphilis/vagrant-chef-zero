@@ -1,7 +1,6 @@
 # Vagrant-Chef-Zero
 [![Build Status](https://travis-ci.org/schubergphilis/vagrant-chef-zero.svg)](https://travis-ci.org/schubergphilis/vagrant-chef-zero)
 [![Code Climate](https://codeclimate.com/github/schubergphilis/vagrant-chef-zero.png)](https://codeclimate.com/github/schubergphilis/vagrant-chef-zero)
-[![Dependency Status](https://gemnasium.com/schubergphilis/vagrant-chef-zero.png)](https://gemnasium.com/schubergphilis/vagrant-chef-zero)
 [![Coverage Status](https://coveralls.io/repos/schubergphilis/vagrant-chef-zero/badge.png)](https://coveralls.io/r/schubergphilis/vagrant-chef-zero)
 [![Gem Version](https://badge.fury.io/rb/vagrant-chef-zero.svg)](http://badge.fury.io/rb/vagrant-chef-zero)
 
