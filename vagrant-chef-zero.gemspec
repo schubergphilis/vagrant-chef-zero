@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "chef-zero", "~> 2.0"
   s.add_dependency "ridley", ">= 1.0.0"
-  s.add_dependency "chef", "~> 11.0"
 
   s.add_development_dependency "bump", "~> 0.5.2"
 

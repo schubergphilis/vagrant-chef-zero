@@ -1,5 +1,3 @@
-require 'chef'
-
 module VagrantPlugins
   module ChefZero
     module Action
@@ -67,9 +65,7 @@ module VagrantPlugins
           environments = select_items(path)
           environments.each do |e|
             if e =~ /.rb$/
-              envrb = ::Chef::Environment.new
-              envrb.from_file(e)
-              environment = envrb.to_hash
+              env[:chef_zero].ui.error("Cannot upload environments defined in ruby files: #{e}")
             else
               environment = JSON.parse(IO.read(e)).to_hash
             end
@@ -90,9 +86,7 @@ module VagrantPlugins
           roles = select_items(path)
           roles.each do |r|
             if r =~ /.rb$/
-              rrb = ::Chef::Role.new
-              rrb.from_file(r)
-              role = rrb.to_hash
+              env[:chef_zero].ui.error("Cannot upload roles defined in ruby files: #{r}")
             else
               role = JSON.parse(IO.read(r)).to_hash
             end
@@ -198,9 +192,7 @@ module VagrantPlugins
           end
           @conn
         end
-
       end
-
     end
   end
 end
