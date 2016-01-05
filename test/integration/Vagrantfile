@@ -1,0 +1,49 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+test_machines = {
+  'windows' => {
+    'box'          => ENV['VAGRANT_TEST_WINDOWS_BOX'], # sbp_windows_2012_r2_20141211_1
+    'communicator' => :winrm,
+    'guest'        => :windows
+  },
+  'centos' => {
+    'box' => ENV['VAGRANT_TEST_CENTOS_BOX'], # opscode-centos-7.1
+    'communicator' => :ssh,
+    'guest'        => :linux
+  }
+}
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |global_config|
+  test_machines.each_pair do |name, options|
+    global_config.vm.define name do |config|
+
+      config.vm.box     = options['box']
+
+      config.vm.communicator = options['communicator']
+      config.vm.guest        = options['guest']
+
+      config.vm.provider 'virtualbox' do |vb|
+        vb.gui = true
+      end
+
+      config.berkshelf.enabled = true
+
+      config.omnibus.chef_version = 'latest'
+
+      config.chef_zero.cookbooks    = [ '../fixtures/cookbooks' ]
+      config.chef_zero.environments = '../fixtures/environments'
+      config.chef_zero.roles        = '../fixtures/roles'
+
+      config.vm.provision 'chef_client', run: 'always' do |chef|
+        chef.environment = 'test'
+        chef.add_role      'test'
+        chef.log_level   = 'info'
+        chef.run_list    = [ 'recipe[test_vagrant_chef_zero::default]' ]
+      end
+    end
+  end
+end

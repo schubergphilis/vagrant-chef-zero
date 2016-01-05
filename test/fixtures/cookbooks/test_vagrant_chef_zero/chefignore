@@ -1,0 +1,12 @@
+*file
+*file.lock
+bin
+bundle
+chefignore
+spec
+test
+vendor
+.git
+.*
+dev.*
+*_dev
