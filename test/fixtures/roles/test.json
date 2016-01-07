@@ -1,0 +1,15 @@
+{
+  "name": "test",
+  "description": "",
+  "cookbook_versions": {
+
+  },
+  "json_class": "Chef::Role",
+  "chef_type": "role",
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  }
+}
