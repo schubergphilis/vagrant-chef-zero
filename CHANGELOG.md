@@ -1,3 +1,8 @@
+## 2.0.0
+
+* Fix windows build (PR #73)
+* Support for Vagrant 1.8 (PR #76)
+
 ## 1.0.1
 
 * Update licence in Gemspec
