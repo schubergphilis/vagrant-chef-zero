@@ -15,8 +15,9 @@ Gem::Specification.new do |s|
   s.rubyforge_project         = "vagrant-chef-zero"
   s.license = "Apache v2.0"
 
-  s.add_dependency "chef-zero", "~> 2.0"
+  s.add_dependency "chef-zero", "~> 2.1"
   s.add_dependency "ridley", ">= 1.0.0"
+  s.add_dependency "ffi-yajl", "~> 2.2"
 
   s.add_development_dependency "bump", "~> 0.5.2"
 
